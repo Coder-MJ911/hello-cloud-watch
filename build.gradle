@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    maven {
+        url "https://maven.springframework.org/release"
+    }
+    maven {
+        url "https://maven.restlet.com"
+    }
+}
+
+dependencies {
+    dependencies {
+        compile 'com.googlecode.json-simple:json-simple:1.1.1'
+        compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.1.0'
+        compile group: 'com.amazonaws', name: 'aws-lambda-java-log4j', version: '1.0.0'
+        compile group: 'com.amazonaws', name: 'aws-lambda-java-events', version: '2.2.7'
+        compile group: 'com.amazonaws', name: 'aws-java-sdk-lambda', version: '1.11.925'
+        implementation group: 'com.amazonaws', name: 'aws-java-sdk-sns', version: '1.11.781'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'Lambda1'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
