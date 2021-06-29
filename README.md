@@ -21,10 +21,13 @@ sls deploy
 ```html
 Basic
 CloudWatch 是什么？我们为什么要使用CloudWatch？
-答案：Amazon CloudWatch 会监控您的 Amazon Web Services (AWS) 资源以及您在上运行的应用程序AWS实时。
-您可以使用 CloudWatch 收集和跟踪指标，这些指标是您可衡量的相关资源和应用程序的变量。CloudWatch 主页自动显示有关每个AWS您使用的服务。
-此外，您还可以创建自定义控制面板，以显示有关自定义应用程序的指标，并显示您选择的指标的自定义集合。您可以创建警报，
-这些警报监视指标，当超出阈值时，它们会发送通知或者对您所监控的资源自动进行更改。通过 CloudWatch，您可以在全面地了解资源使用率、应用程序性能和运行状况。
+答案：Amazon CloudWatch 是一项针对 AWS 云资源和在 AWS 上运行的应用程序的监控服务。
+使用 Amazon CloudWatch 可以收集和跟踪指标、收集和监控日志文件以及设置警报。
+Amazon CloudWatch 可以监控各种 AWS 资源，例如 Amazon EC2 实例、Amazon DynamoDB 表、Amazon RDS 数据库实例、应用程序和服务生成的自定义指标以及应用程序生成的所有日志文件。
+您可通过使用 Amazon CloudWatch 全面地了解系统的资源使用率、应用程序性能和运行状况。
+使用这些分析结果，您可以及时做出反应，保证应用程序顺畅运行。
+为了开始监控，您可以使用融合 AWS 最佳实践的自动化控制面板，查看基于账户和资源的指标与警报视图，
+并轻松深入分析以了解性能问题的根本原因。
 
 
 CloudWatch中的metrics是什么？包括哪些种类？我们可以如何使用metrics？
