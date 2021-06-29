@@ -19,7 +19,45 @@ package:
   artifact: build/libs/hello-cloud-watch-1.0-SNAPSHOT.jar
 
 functions:
-
+  lambda1:
+    handler: lambda.Lambda1
+      timeout: 900
+      reservedConcurrency: 100  #ReservedConcurrentExecutions(AWS)
+      events:
+        - schedule: cron(*/1 * * * *)
 
 resources:
   Resources:
+    SendEmailTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: SendEmailTopic
+        Subscription:
+          - Endpoint: jiajie.ma@thoughtworks.com
+            Protocol: email
+
+
+    LambdaAlarm:
+      Type: AWS::CloudWatch::Alarm
+      Properties:
+        AlarmDescription: Lambda alarm
+        AlarmName: LambdaCustomAlarm
+        AlarmAction:
+          - !Ref SendEmailTopic
+        ComparisonOperator: GreaterThanThreshold
+        EvaluationPeriods: 1
+        Threshold: 0
+        Metrics:
+          - Expression: failSize - 0
+            Id: cloudwathcalarm
+          - Id: failSize
+            MetricStat:
+              Metric:
+                MetricName: CloudWatchSelfLearningMetricName
+                Namespace: SITE/TRAFFIC
+              Period: 3600
+              Stat: Sum
+          ThresholdMetricId: cloudwathcalarm
+          TreatMissingData: breaching
+
+
