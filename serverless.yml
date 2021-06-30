@@ -11,9 +11,9 @@ provider:
     - Effect: Allow
       Action:
         - lambda:InvokeFunction
-        - sns:Publish
+        - sns:*
         - logs:*
-        - cloudwatch:PutMetricData
+        - cloudwatch:*
       Resource: "*"
 
 package:
@@ -25,7 +25,7 @@ functions:
     timeout: 900
     reservedConcurrency: 100  #ReservedConcurrentExecutions(AWS)
     events:
-      - schedule: cron(0 9 ? * 2#1 *) #cron(0/1 * ? * MON-FRI *) cron(0 9 ? * 2#1 *)
+      - schedule: cron(0/1 * ? * MON-FRI *) #cron(0/1 * ? * MON-FRI *) cron(0 9 ? * 2#1 *)
 
 resources:
   Resources:
@@ -68,7 +68,7 @@ resources:
               Metric:
                 MetricName: CloudWatchSelfLearningMetricName
                 Namespace: SITE/TRAFFIC
-              Period: 3600
+              Period: 60
               Stat: Sum
             ReturnData: False
         TreatMissingData: breaching

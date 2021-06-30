@@ -45,7 +45,9 @@ public class Lambda1 implements RequestHandler<ScheduledEvent, String> {
         logger.log("ThirdStep: Create PutMetricDataRequest");
 
         PutMetricDataResult response = cw.putMetricData(request);
-        return "200 OK" + new Date() + "Response is :" + response;
+        String result = "200 OK" + new Date() + "Response is :" + response;
+        logger.log(result);
+        return result;
     }
 
 }
