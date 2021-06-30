@@ -14,7 +14,8 @@ saml2aws login --profile tw-aws-beach
 ```
 
 ```shell
-sls deploy
+sls deploy (default config file: serverless.yml)
+sls deploy -c BACKUPServerless.yml
 ```
 
 
