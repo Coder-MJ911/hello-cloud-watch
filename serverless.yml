@@ -25,7 +25,7 @@ functions:
     timeout: 900
     reservedConcurrency: 100  #ReservedConcurrentExecutions(AWS)
     events:
-      - schedule: cron(0/1 * ? * MON-FRI *) #cron(0/1 * ? * MON-FRI *) cron(0 9 ? * 2#1 *)
+      - schedule: cron(0 9 ? * 2#1 *) #cron(0/1 * ? * MON-FRI *) cron(0 9 ? * 2#1 *)
 
 resources:
   Resources:
@@ -60,15 +60,8 @@ resources:
         ComparisonOperator: GreaterThanThreshold
         EvaluationPeriods: 1
         Threshold: 0
-        Metrics:
-          - Expression: failSize - 0
-            Id: cloudwathcalarm
-          - Id: failSize
-            MetricStat:
-              Metric:
-                MetricName: CloudWatchSelfLearningMetricName
-                Namespace: SITE/TRAFFIC
-              Period: 60
-              Stat: Sum
-            ReturnData: False
-        TreatMissingData: breaching
+        Period: 60
+        MetricName: CloudWatchSelfLearningMetricName
+        Namespace: SITE/TRAFFIC
+        Statistic: Maximum
+        TreatMissingData: notBreaching

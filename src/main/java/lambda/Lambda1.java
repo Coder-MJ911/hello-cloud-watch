@@ -25,18 +25,17 @@ public class Lambda1 implements RequestHandler<ScheduledEvent, String> {
         final AmazonCloudWatch cw =
                 AmazonCloudWatchClientBuilder.defaultClient();
 
-        Dimension dimension = new Dimension()
-                .withName("CloudWatchSelfLearningDimensionName")
-                .withValue("URLS");
-        logger.log("FirstStep: Create dimension");
+//        Dimension dimension = new Dimension()
+//                .withName("CloudWatchSelfLearningDimensionName")
+//                .withValue("0");
+//        logger.log("FirstStep: Create dimension");
 
         Double data_point = (double) ((new Date()).getTime() % 2);
         logger.log("data_point is " + data_point);
         MetricDatum datum = new MetricDatum()
                 .withMetricName("CloudWatchSelfLearningMetricName")
                 .withUnit(StandardUnit.Seconds)
-                .withValue(data_point)
-                .withDimensions(dimension);
+                .withValue(data_point);
         logger.log("SecondStep: Create MetricDatum");
 
         PutMetricDataRequest request = new PutMetricDataRequest()
