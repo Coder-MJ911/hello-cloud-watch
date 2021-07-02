@@ -74,3 +74,9 @@ Output：
 部署cloudformation后，功能完整，邮箱可以收到报警
 
 ```
+
+
+```bash
+put metric value:
+$ aws cloudwatch put-metric-data --namespace "SITE/TRAFFIC" --metric-data file://input.json --profile tw-aws-beach --region ap-southeast-2
+```
